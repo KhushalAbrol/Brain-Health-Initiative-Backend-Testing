@@ -1,20 +1,15 @@
 package com.healthcare.ConsultationForm;
 
-
-/* Author : Jayprakash Ray
-    Date : 25/11/2022
-    Bypass Testing of Consultation Form Feature/ Module
- */
-import java.io.IOException;
-
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
-public class ConsultationFormValidInput {
+import java.io.IOException;
+
+public class ConsultationFormInvalidInput {
     public static void main(String[] args) throws InterruptedException, IOException {
 
         WebDriver webDriver = new ChromeDriver();
@@ -49,15 +44,17 @@ public class ConsultationFormValidInput {
 
         Thread.sleep(1100);
 
-//        // Bypassing ReadOnly validation
-//        WebElement date = webDriver.findElement(By.name("date"));
-//        js.executeScript("document.getElementsByName('date')[0].readOnly=false");
-//        date.sendKeys("18-01-2021");
+
 
         WebElement dynamicButton = webDriver.findElement(By.name("dynamicButton"));
         dynamicButton.click();
 
         Thread.sleep(1100);
+
+        // Bypassing ReadOnly validation
+        WebElement date = webDriver.findElement(By.name("date"));
+        js.executeScript("document.getElementsByName('date')[0].readOnly=false");
+        date.sendKeys("18-01-2021");
 
         Select diagnosisType = new Select(webDriver.findElement(By.name("diagnosisType")));
         diagnosisType.selectByIndex(1);

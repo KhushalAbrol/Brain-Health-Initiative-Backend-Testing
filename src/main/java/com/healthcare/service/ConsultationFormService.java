@@ -9,9 +9,13 @@ import com.healthcare.entity.Doctor;
 import com.healthcare.entity.Hospital;
 import com.healthcare.entity.Patient;
 import com.healthcare.exception.APIRequestException;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +33,10 @@ public class ConsultationFormService {
 
 
     public ConsultationForm createConsultationForm(ConsultationForm consultationForm){
+        Date today = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
+        if(!DateUtils.isSameDay(consultationForm.getDateAndTime(), today)){
+            throw new APIRequestException("Invalid Date ! Consultation form can be created for present date");
+        }
         Doctor doctor = doctorDao.findByHealthId(consultationForm.getDoctor().getDoctor().getUserId());
         if(doctor==null) throw new APIRequestException("Invalid doctor id");
         Optional<Hospital> hospital = hospitalDao.findById(consultationForm.getHospital().getHospitalId());

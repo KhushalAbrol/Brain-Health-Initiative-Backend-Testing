@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ public class ConsultationForm {
     @Convert(converter = HashMapConverter.class)
     private List<Map<String, String>> medicineInfo;
 
+    @FutureOrPresent
     @NotNull
     @Column(nullable = false, name="date_and_time")
     private Date dateAndTime;
