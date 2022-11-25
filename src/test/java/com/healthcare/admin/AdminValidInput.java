@@ -116,3 +116,9 @@ public class AdminValidInput {
         Thread.sleep(10000);
     }
 }
+/*
+ * Conclusion:
+ *
+ * Successfully submitted the form by valid details
+ *
+ * */

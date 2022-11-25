@@ -125,7 +125,7 @@ public class AdminInvalidInput {
 /*
 * Conclusion:
 *
-* Error in not handled at the frontend, but handled at the backend.
-* So it gives error in console instead on a pop-up.
+* Error is not handled at the frontend, but handled at the backend.
+* So it gives error in the console instead on a pop-up.
 *
 * */
