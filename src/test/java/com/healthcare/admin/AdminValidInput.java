@@ -9,26 +9,24 @@ import org.openqa.selenium.support.ui.Select;
 import java.io.IOException;
 
 /*
-* Author : Khushal Abrol
-* Date : 25/11/2022
-* Bypass Testing of Admin Input Form Feature/Module by invalid Input
-*
-* In this testcase we are checking Add Doctor functionality.
-*
-* Add doctor form has the following constraints:
-* 1. User Id: 12 Digits and unique
-* 2. Passwords and Confirm Password fields should match
-* 3. Email should be in the format username@mailServer.domain
-* 4. Mobile number should be of 10 digits
-* 5. Pincode should be of 6 digits
-*
-*   Here we are providing following invalid inputs:
-* 1. Mobile number: providing 11 digits number instead of 10 digits number.
-* 2. Email: Not in required format.
-* 3. Pincode: 5 digits instead of 6 digits.
-*
-* */
-public class AdminInvalidInput {
+ * Author : Khushal Abrol
+ * Date : 25/11/2022
+ * Bypass Testing of Admin Input Form Feature/Module by valid Input
+ *
+ * In this testcase we are checking Add Doctor functionality.
+ *
+ * Add doctor form has the following constraints:
+ * 1. User Id: 12 Digits and unique
+ * 2. Passwords and Confirm Password fields should match
+ * 3. Email should be in the format username@mailServer.domain
+ * 4. Mobile number should be of 10 digits
+ * 5. Pincode should be of 6 digits
+ *
+ *   Here we are providing all valid inputs.
+ *
+ * */
+
+public class AdminValidInput {
     public static void main(String[] args) throws InterruptedException, IOException {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
@@ -64,9 +62,9 @@ public class AdminInvalidInput {
         // Wait for 1 sec
         Thread.sleep(1000);
 
-        //Entering details of doctor to be added (Where some details are invalid)
+        //Entering details of doctor to be added (all valid inputs)
         WebElement userId2 = driver.findElement(By.name("userId"));
-        userId2.sendKeys("123456789106");
+        userId2.sendKeys("166456785406");
 
         WebElement password2 = driver.findElement(By.name("password"));
         password2.sendKeys("123abcABC@");
@@ -87,13 +85,10 @@ public class AdminInvalidInput {
         roleName.selectByValue("secondary specialist");
 
         WebElement mobileNo = driver.findElement(By.name("mobileNo"));
-        js.executeScript("document.getElementsByName('mobileNo')[0].setAttribute('pattern', '^[0-9]*$')");
-        mobileNo.sendKeys("99152963412");
+        mobileNo.sendKeys("9915296341");
 
         WebElement email = driver.findElement(By.name("email"));
-        js.executeScript("document.getElementsByName('email')[0].setAttribute('type', 'text')");
-        js.executeScript("document.getElementsByName('email')[0].setAttribute('pattern', '(.*?)')");
-        email.sendKeys("testing");
+        email.sendKeys("testing@doctor.com");
 
         Select hospitalId = new Select(driver.findElement(By.name("hospitalId")));
         hospitalId.selectByIndex(0);
@@ -108,8 +103,7 @@ public class AdminInvalidInput {
         state.sendKeys("Karnataka");
 
         WebElement pincode = driver.findElement(By.name("pincode"));
-        js.executeScript("document.getElementsByName('pincode')[0].setAttribute('pattern', '^[0-9]*$')");
-        pincode.sendKeys("56010");
+        pincode.sendKeys("560100");
 
         // Wait for 1 sec
         Thread.sleep(1000);
@@ -122,10 +116,3 @@ public class AdminInvalidInput {
         Thread.sleep(10000);
     }
 }
-/*
-* Conclusion:
-*
-* Error in not handled at the frontend, but handled at the backend.
-* So it gives error in console instead on a pop-up.
-*
-* */
