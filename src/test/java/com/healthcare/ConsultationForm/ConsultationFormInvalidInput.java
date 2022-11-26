@@ -53,7 +53,9 @@ public class ConsultationFormInvalidInput {
 
         // Bypassing ReadOnly validation
         WebElement date = webDriver.findElement(By.name("date"));
+        //Making Date field Editable
         js.executeScript("document.getElementsByName('date')[0].readOnly=false");
+        //Entering Past Date
         date.sendKeys("18-01-2021");
 
         Select diagnosisType = new Select(webDriver.findElement(By.name("diagnosisType")));
