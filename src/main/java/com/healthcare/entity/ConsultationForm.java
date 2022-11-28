@@ -83,7 +83,6 @@ public class ConsultationForm {
     @Convert(converter = HashMapConverter.class)
     private List<Map<String, String>> medicineInfo;
 
-    @FutureOrPresent
     @NotNull
     @Column(nullable = false, name="date_and_time")
     private Date dateAndTime;

@@ -8,8 +8,25 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
+/*
+ * Author : Jayprakash Ray
+ * Date : 25/11/2022
+ * Bypass Testing of Add Consultaion Form Feature/Module by invalid Input
+ *
+ * This feature lets doctors add a consultation form on a patient's medical visit by entering details of his current medical condition and also can prescribe medicine by filling and submitting the form
+ *
+ * Add Consultation Form has following Constraint :
+ * 2. Date : Current Date Only [Read Only]
+ * 3. Compliant : Required
+ * 4. ICD Description : Required
 
-public class ConsultationFormInvalidInput {
+ *   Here we are providing following invalid inputs:
+ * 1. Compliant: Provided Empty Input
+.
+*
+ *
+ * */
+public class ConsultationFormInvalidInputCompliant {
     public static void main(String[] args) throws InterruptedException, IOException {
 
         WebDriver webDriver = new ChromeDriver();
@@ -61,17 +78,20 @@ public class ConsultationFormInvalidInput {
         Select diagnosisType = new Select(webDriver.findElement(By.name("diagnosisType")));
         diagnosisType.selectByIndex(1);
 
-        WebElement compliant = webDriver.findElement(By.name("compliant"));
-        compliant.sendKeys("testCompliant");
+        js.executeScript("document.getElementsByName('compliant')[0].required=false");
+//        WebElement compliant = webDriver.findElement(By.name("compliant"));
+//        compliant.sendKeys("testCompliant");
 
-        WebElement examination = webDriver.findElement(By.name("examination"));
-        examination.sendKeys("testExamination");
+        js.executeScript("document.getElementsByName('examination')[0].required=false");
+//        WebElement examination = webDriver.findElement(By.name("examination"));
+//        examination.sendKeys("testExamination");
 
         Select icd10Code = new Select(webDriver.findElement(By.name("icd10Code")));
         icd10Code.selectByIndex(1);
 
-        WebElement icdDescription = webDriver.findElement(By.name("icdDescription"));
-        icdDescription.sendKeys("testICDDescription");
+        js.executeScript("document.getElementsByName('icdDescription')[0].required=false");
+//        WebElement icdDescription = webDriver.findElement(By.name("icdDescription"));
+//        icdDescription.sendKeys("testICDDescription");
 
         WebElement instructions = webDriver.findElement(By.name("instructions"));
         instructions.sendKeys("testInstructions");

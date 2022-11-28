@@ -34,6 +34,12 @@ public class ConsultationFormService {
 
     public ConsultationForm createConsultationForm(ConsultationForm consultationForm){
         Date today = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
+        if(consultationForm.getIcdDescription() == ""){
+            throw new APIRequestException("ICD Description Cannot be Empty!");
+        }
+        if(consultationForm.getTreatmentInstructions()== ""){
+            throw new APIRequestException("Treatment Instruction Cannot be Empty!");
+        }
         if(!DateUtils.isSameDay(consultationForm.getDateAndTime(), today)){
             throw new APIRequestException("Invalid Date ! Consultation form can be created for present date");
         }
