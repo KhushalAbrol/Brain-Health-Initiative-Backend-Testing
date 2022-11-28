@@ -29,18 +29,23 @@ import java.io.IOException;
 public class ConsultationFormInvalidInputCompliant {
     public static void main(String[] args) throws InterruptedException, IOException {
 
+        //Chrome Web Driver Object Initialized
         WebDriver webDriver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
 
+        //Opening Web Page
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         webDriver.get("http://localhost:4200/login");
 
+        //Setting User ID
         WebElement uid = webDriver.findElement(By.name("userId"));
         uid.sendKeys("123456789105");
 
+        //Setting Password
         WebElement pass = webDriver.findElement(By.name("userPassword"));
         pass.sendKeys("hello world");
 
+        //Clicking on Login Button
         WebElement loginButton = webDriver.findElement(By.id("login"));
         loginButton.click();
 
@@ -49,6 +54,7 @@ public class ConsultationFormInvalidInputCompliant {
         WebElement abha_Id = webDriver.findElement(By.name("abhaId"));
 //        js.executeScript("document.getElementsByName('abhaId')[0].required=false");
         abha_Id.sendKeys("987654321012");
+
 
         Thread.sleep(1100);
         WebElement checkBox = webDriver.findElement(By.name("checkbox"));

@@ -1,10 +1,21 @@
 package com.healthcare.ConsultationForm;
 
 
-/* Author : Jayprakash Ray
-    Date : 25/11/2022
-    Bypass Testing of Consultation Form Feature/ Module
- */
+/*
+ * Author : Jayprakash Ray
+ * Date : 25/11/2022
+ * Bypass Testing of Add Consultaion Form Feature/Module by invalid Input
+ *
+ * This feature lets doctors add a consultation form on a patient's medical visit by entering details of his current medical condition and also can prescribe medicine by filling and submitting the form
+ *
+ * Add Consultation Form has following Constraint :
+ * 2. Date : Current Date Only [Read Only]
+ * 3. Compliant : Required
+ * 4. ICD Description : Required
+
+ *   Here we are providing Valid Inputs as Per Constraints
+
+ * */
 import java.io.IOException;
 
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,18 +28,23 @@ import org.openqa.selenium.WebElement;
 public class ConsultationFormValidInput {
     public static void main(String[] args) throws InterruptedException, IOException {
 
+        //Chrome Web Driver Object Initialized
         WebDriver webDriver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
 
+        //Opening Web Page
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         webDriver.get("http://localhost:4200/login");
 
+        //Setting User ID
         WebElement uid = webDriver.findElement(By.name("userId"));
         uid.sendKeys("123456789105");
 
+        //Setting Password
         WebElement pass = webDriver.findElement(By.name("userPassword"));
         pass.sendKeys("hello world");
 
+        //Clicking on Login Button
         WebElement loginButton = webDriver.findElement(By.id("login"));
         loginButton.click();
 
@@ -49,10 +65,6 @@ public class ConsultationFormValidInput {
 
         Thread.sleep(1100);
 
-//        // Bypassing ReadOnly validation
-//        WebElement date = webDriver.findElement(By.name("date"));
-//        js.executeScript("document.getElementsByName('date')[0].readOnly=false");
-//        date.sendKeys("18-01-2021");
 
         WebElement dynamicButton = webDriver.findElement(By.name("dynamicButton"));
         dynamicButton.click();
@@ -93,7 +105,7 @@ public class ConsultationFormValidInput {
         followUp.sendKeys("27-12-2022");
 
         Thread.sleep(1100);
-
+        //Submit Button Click
         WebElement submit = webDriver.findElement(By.id("submitB"));
         submit.click();
 
