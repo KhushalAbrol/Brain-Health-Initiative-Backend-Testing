@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
+
 /*
  * Author : Jayprakash Ray
  * Date : 25/11/2022
@@ -21,12 +22,10 @@ import java.io.IOException;
  * 4. ICD Description : Required
 
  *   Here we are providing following invalid inputs:
- * 1. Compliant: Provided Empty Input
-.
-*
- *
+ * 3. ICDDesc: Provided with Blank Input
+
  * */
-public class ConsultationFormInvalidInputCompliant {
+public class ConsultationFormInvalidInputICDDesc {
     public static void main(String[] args) throws InterruptedException, IOException {
 
         //Chrome Web Driver Object Initialized
@@ -52,7 +51,6 @@ public class ConsultationFormInvalidInputCompliant {
         //sleep
         Thread.sleep(1100);
         WebElement abha_Id = webDriver.findElement(By.name("abhaId"));
-//        js.executeScript("document.getElementsByName('abhaId')[0].required=false");
         abha_Id.sendKeys("987654321012");
 
 
@@ -74,19 +72,12 @@ public class ConsultationFormInvalidInputCompliant {
 
         Thread.sleep(1100);
 
-        // Bypassing ReadOnly validation
-        WebElement date = webDriver.findElement(By.name("date"));
-        //Making Date field Editable
-        js.executeScript("document.getElementsByName('date')[0].readOnly=false");
-        //Entering Past Date
-        date.sendKeys("18-01-2021");
 
         Select diagnosisType = new Select(webDriver.findElement(By.name("diagnosisType")));
         diagnosisType.selectByIndex(1);
 
-        js.executeScript("document.getElementsByName('compliant')[0].required=false");
-//        WebElement compliant = webDriver.findElement(By.name("compliant"));
-//        compliant.sendKeys("testCompliant");
+        WebElement compliant = webDriver.findElement(By.name("compliant"));
+        compliant.sendKeys("testCompliant");
 
         WebElement examination = webDriver.findElement(By.name("examination"));
         examination.sendKeys("testExamination");
@@ -94,8 +85,9 @@ public class ConsultationFormInvalidInputCompliant {
         Select icd10Code = new Select(webDriver.findElement(By.name("icd10Code")));
         icd10Code.selectByIndex(1);
 
-        WebElement icdDescription = webDriver.findElement(By.name("icdDescription"));
-        icdDescription.sendKeys("testICDDescription");
+        //Making ICD Description required = false to pass empty string [Bypassing Required Validation]
+        js.executeScript("document.getElementsByName('icdDescription')[0].required=false");
+
 
         WebElement instructions = webDriver.findElement(By.name("instructions"));
         instructions.sendKeys("testInstructions");

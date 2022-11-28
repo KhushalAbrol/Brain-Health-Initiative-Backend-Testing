@@ -48,10 +48,10 @@ public class ConsultationFormValidInput {
         WebElement loginButton = webDriver.findElement(By.id("login"));
         loginButton.click();
 
-        //sleep
+//        //sleep
         Thread.sleep(1100);
         WebElement abha_Id = webDriver.findElement(By.name("abhaId"));
-//        js.executeScript("document.getElementsByName('abhaId')[0].required=false");
+////        js.executeScript("document.getElementsByName('abhaId')[0].required=false");
         abha_Id.sendKeys("987654321012");
 
         Thread.sleep(1100);
