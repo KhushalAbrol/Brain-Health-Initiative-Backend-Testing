@@ -64,7 +64,7 @@ public class AdminValidInput {
 
         //Entering details of doctor to be added (all valid inputs)
         WebElement userId2 = driver.findElement(By.name("userId"));
-        userId2.sendKeys("166456785406");
+        userId2.sendKeys("994756785406");
 
         WebElement password2 = driver.findElement(By.name("password"));
         password2.sendKeys("123abcABC@");
